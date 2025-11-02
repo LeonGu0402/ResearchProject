@@ -1,0 +1,3 @@
+﻿  Test4.cpp
+D:\学习\Programming\projects\term5\ResearchProject\SimpleC++TestExample\Test4\Test4.cpp(25,25): warning C4244: 'initializing': conversion from 'time_t' to 'long', possible loss of data
+  Test4.vcxproj -> D:\学习\Programming\projects\term5\ResearchProject\SimpleC++TestExample\Test4\x64\Debug\Test4.exe
