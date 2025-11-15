@@ -6,24 +6,44 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class RESEARCHPROJECT_API APlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	APlayerCharacter();
 
+	//UFUNCTION test
+	UFUNCTION(BlueprintCallable)
+	void CallableFunction();
+	UFUNCTION(BlueprintPure)
+	bool PureFucntion();
+
+	//BluePrintInplimentation
+	UFUNCTION(BlueprintImplementableEvent)
+	void MyBluePrintFunction();
+
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USpringArmComponent> CameraBoom;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCameraComponent> PlayerCamera;
+
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//UPROPERTY test
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "U|test")
+	float testLine;
+
+
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };

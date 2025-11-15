@@ -2,6 +2,8 @@
 
 
 #include "player/PlayerCharacter.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -9,12 +11,25 @@ APlayerCharacter::APlayerCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//adding the spring arm to the mesh in the BP
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
+	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->TargetArmLength = 600.f;
+	CameraBoom->SetRelativeRotation(FRotator(-40.f, 0.f, 0.f));//pitch yaw roll
+	//if change the rootcomponent
+	//SetRootComponent(CameraBoom);
+
+	//adding cemara to the arm
+	PlayerCamera = CreateDefaultSubobject<UCameraComponent>("Player Camera");
+	PlayerCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+
 }
 
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	MyBluePrintFunction();
 	
 }
 
@@ -30,5 +45,17 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+//test functions
+
+void APlayerCharacter::CallableFunction()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Callable"));
+}
+
+bool APlayerCharacter::PureFucntion()
+{
+	return false;
 }
 
