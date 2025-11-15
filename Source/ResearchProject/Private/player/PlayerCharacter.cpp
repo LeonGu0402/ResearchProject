@@ -30,7 +30,9 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	MyBluePrintFunction();
-	
+	UE_LOG(LogTemp, Warning, TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength);
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, FString::Printf(TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength));
+
 }
 
 // Called every frame
