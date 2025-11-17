@@ -38,7 +38,7 @@ protected:
 
 	//UPROPERTY test
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "U|test")
-	float testLine;
+	float testLine = 0.f;
 
 
 public:	
