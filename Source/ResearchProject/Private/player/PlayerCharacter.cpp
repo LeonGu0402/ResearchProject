@@ -62,8 +62,8 @@ bool APlayerCharacter::PureFucntion()
 }
 
 
-//created this just to get rid of the warning message
-void APlayerCharacter::MyBluePrintFunction()
-{
-}
+////created this just to get rid of the warning message
+//void APlayerCharacter::MyBluePrintFunction()
+//{
+//}
 
