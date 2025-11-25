@@ -7,6 +7,7 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -26,6 +27,19 @@ APlayerCharacter::APlayerCharacter()
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>("Player Camera");
 	PlayerCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 
+
+	//the character does not rotate with the movement
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+	bUseControllerRotationPitch = false;
+
+	//the spring arm rotates, not the camera
+	CameraBoom->bUsePawnControlRotation = true;
+	PlayerCamera->bUsePawnControlRotation = false;
+
+	//character rotate based on move directions
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 }
 
 // Called when the game starts or when spawned
