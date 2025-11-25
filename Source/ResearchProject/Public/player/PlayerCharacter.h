@@ -6,10 +6,13 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
+
 class USpringArmComponent;
 class UCameraComponent;
+
 class UInputMappingContext;
 class UInputAction;
+struct FInputActionValue;
 
 UCLASS()
 class RESEARCHPROJECT_API APlayerCharacter : public ACharacter
@@ -29,6 +32,11 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void MyBluePrintFunction();
 
+
+	void Look(const FInputActionValue& Value);
+	void Move(const FInputActionValue& Value);
+
+
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USpringArmComponent> CameraBoom;
@@ -36,10 +44,10 @@ private:
 	TObjectPtr<UCameraComponent> PlayerCamera;
 
 
+
 	//Input Mapping
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext> DefaultMapping;
-
 
 	//Input Action
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
