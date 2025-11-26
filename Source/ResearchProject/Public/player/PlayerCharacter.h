@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
+#include "Components/SphereComponent.h"
 
 
 class USpringArmComponent;
@@ -14,6 +15,8 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+class USphereComponent;
+
 UCLASS()
 class RESEARCHPROJECT_API APlayerCharacter : public ACharacter
 {
@@ -22,12 +25,22 @@ class RESEARCHPROJECT_API APlayerCharacter : public ACharacter
 public:
 	APlayerCharacter();
 
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	virtual void Attack();
+
+
+
+protected:
+	virtual void BeginPlay() override;
+
+	//UPROPERTY test
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "U|test")
+	float testLine = 0.f;
 	//UFUNCTION test
 	UFUNCTION(BlueprintCallable)
 	void CallableFunction();
 	UFUNCTION(BlueprintPure)
 	bool PureFucntion();
-
 	//BluePrintInplimentation
 	UFUNCTION(BlueprintImplementableEvent)
 	void MyBluePrintFunction();
@@ -36,6 +49,9 @@ public:
 	void Look(const FInputActionValue& Value);
 	void Move(const FInputActionValue& Value);
 
+	//Composition demonstration
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Sphere, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USphereComponent> SphereComponent;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -56,12 +72,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
 
-protected:
-	virtual void BeginPlay() override;
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UInputAction> AttackAction;
 
-	//UPROPERTY test
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "U|test")
-	float testLine = 0.f;
 
 
 public:	

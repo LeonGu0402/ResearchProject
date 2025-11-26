@@ -27,6 +27,10 @@ APlayerCharacter::APlayerCharacter()
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>("Player Camera");
 	PlayerCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 
+	//Sphere composition test
+	SphereComponent = CreateDefaultSubobject<USphereComponent>("Sphere Collision");
+	SphereComponent->SetSphereRadius(35.f);
+
 
 	//the character does not rotate with the movement
 	bUseControllerRotationYaw = false;
@@ -42,13 +46,15 @@ APlayerCharacter::APlayerCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 }
 
+
+
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	/*MyBluePrintFunction();*/
+	/*MyBluePrintFunction();
 	UE_LOG(LogTemp, Warning, TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength);
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, FString::Printf(TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength));
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, FString::Printf(TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength));*/
 
 
 
@@ -70,17 +76,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) 
-	{
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
-	}
-
-}
 //Move function
 void APlayerCharacter::Move(const FInputActionValue& Value) 
 {
@@ -96,6 +91,7 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 		AddMovementInput(RightDirection, MoveVector.Y);
 	}
 }
+
 //Look function
 void APlayerCharacter::Look(const FInputActionValue& Value)
 {
@@ -108,9 +104,14 @@ void APlayerCharacter::Look(const FInputActionValue& Value)
 
 }
 
+//Attack function
+void APlayerCharacter::Attack()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Attack from character"));
+}
+
 
 //test functions
-
 void APlayerCharacter::CallableFunction()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Callable"));
@@ -119,6 +120,20 @@ void APlayerCharacter::CallableFunction()
 bool APlayerCharacter::PureFucntion()
 {
 	return false;
+}
+
+
+// Called to bind functionality to input
+void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Attack);
+	}
+
 }
 
 
