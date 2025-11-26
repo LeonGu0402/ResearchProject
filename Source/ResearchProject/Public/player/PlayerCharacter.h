@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "PlayerCharacter.generated.h"
 #include "Components/SphereComponent.h"
+#include "PlayerCharacter.generated.h"
 
 
 class USpringArmComponent;
