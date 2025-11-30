@@ -10,7 +10,7 @@ void ACPPPlayerController::OnPossess(APawn* InPawn)
 	if (InPawn) 
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Pawn OnPossess"));
-		InPawn->SetActorLocation(FVector(0.F, 0.F, 0.F));
+		InPawn->SetActorLocation(FVector(900.F, 1000.F, 100.F));
 
 	}
 }

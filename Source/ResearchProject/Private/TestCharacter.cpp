@@ -52,7 +52,29 @@ ATestCharacter::ATestCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	//TArray test example
+	MyIntArray.Add(1);
+	MyIntArray.Add(2);
+	MyIntArray.Add(3);
+
+
 }
+
+void ATestCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	for (int i = 0; i < MyIntArray.Num(); i++)
+	{
+		int Element = MyIntArray[i];
+		UE_LOG(LogTemp, Warning, TEXT("Index: Element: %d : %d"), i, Element);
+	}
+
+	MyIntArray.Add(4);
+	int ElementAtIndexTwo = MyIntArray[3];
+	UE_LOG(LogTemp, Warning, TEXT("Element: %d"), ElementAtIndexTwo);
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // Input
