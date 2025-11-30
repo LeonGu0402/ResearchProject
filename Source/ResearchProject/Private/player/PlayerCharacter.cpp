@@ -32,7 +32,7 @@ APlayerCharacter::APlayerCharacter()
 	SphereComponent->SetSphereRadius(35.f);
 
 
-	//the character does not rotate with the movement
+	//the character does not rotate with the camera
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationPitch = false;
