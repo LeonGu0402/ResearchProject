@@ -44,6 +44,8 @@ APlayerCharacter::APlayerCharacter()
 	//character rotate based on move directions
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
+
+	UE_LOG(LogTemp, Warning, TEXT("APlayerCharacter::APlayerCharacter"));
 }
 
 
@@ -51,6 +53,8 @@ APlayerCharacter::APlayerCharacter()
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
+	UE_LOG(LogTemp, Warning, TEXT("APlayerCharacter::BeginPlay"));
+
 	Super::BeginPlay();
 	/*MyBluePrintFunction();
 	UE_LOG(LogTemp, Warning, TEXT("CameraBoom : TargetArmLength: %f"), CameraBoom->TargetArmLength);
