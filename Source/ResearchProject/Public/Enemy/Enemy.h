@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Enemy.generated.h"
 
+class ULookComponent;
+
 UCLASS()
 class RESEARCHPROJECT_API AEnemy : public ACharacter
 {
@@ -15,9 +17,9 @@ public:
 	// Sets default values for this character's properties
 	AEnemy();
 
-	bool LineTraceActor(const AActor* TargetActor);
+	/*bool LineTraceActor(const AActor* TargetActor);
 
-	bool CanSeeActor(const AActor* TargetActor, FVector Start, FVector End) const;
+	bool CanSeeActor(const AActor* TargetActor, FVector Start, FVector End) const;*/
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,10 +27,14 @@ protected:
 
 	bool bCanSeePlayer = false;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<ULookComponent> LookComponent;
+
 private:
 	TObjectPtr<ACharacter> TargetCharacter;
-
+	UPROPERTY(EditAnywhere)
 	TArray<FHitResult> TArrayResult;
+
 
 public:	
 	// Called every frame
