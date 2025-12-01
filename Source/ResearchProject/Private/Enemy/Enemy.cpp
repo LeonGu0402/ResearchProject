@@ -67,7 +67,7 @@ bool AEnemy::CanSeeActor(const AActor* TargetActor, FVector Start, FVector End) 
 		return false;
 	}
 	FHitResult Hit;
-	ECollisionChannel Channel = ECollisionChannel::ECC_Visibility;
+	ECollisionChannel Channel = ECollisionChannel::ECC_GameTraceChannel1;
 
 
 	//ingore player and enemy(this)
@@ -77,6 +77,8 @@ bool AEnemy::CanSeeActor(const AActor* TargetActor, FVector Start, FVector End) 
 
 
 	GetWorld()->LineTraceSingleByChannel(Hit, Start, End, Channel, QueryParams);
+
+	//GetWorld()->LineTraceMultiByChannel(TArrayResult, Start, End, Channel, QueryParams);
 
 	DrawDebugLine(GetWorld(), Start, End, FColor::Green);
 

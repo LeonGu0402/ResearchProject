@@ -28,6 +28,8 @@ protected:
 private:
 	TObjectPtr<ACharacter> TargetCharacter;
 
+	TArray<FHitResult> TArrayResult;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
