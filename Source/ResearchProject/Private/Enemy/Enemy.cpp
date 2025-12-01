@@ -24,7 +24,7 @@ void AEnemy::BeginPlay()
 	Super::BeginPlay();
 	TargetCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
 
-	UE_LOG(LogTemp, Warning, TEXT("TargetCharacter: %s"), *TargetCharacter->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("Check if this working, fuckfduckfuck"));
 
 	LookComponent->SetTarget(TargetCharacter);
 }

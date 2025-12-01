@@ -72,12 +72,12 @@ void ATestCharacter::BeginPlay()
 	for (int i = 0; i < MyIntArray.Num(); i++)
 	{
 		int Element = MyIntArray[i];
-		UE_LOG(LogTemp, Warning, TEXT("Index: Element: %d : %d"), i, Element);
+		//UE_LOG(LogTemp, Warning, TEXT("Index: Element: %d : %d"), i, Element);
 	}
 
 	MyIntArray.Add(4);
 	int ElementAtIndexTwo = MyIntArray[3];
-	UE_LOG(LogTemp, Warning, TEXT("Element: %d"), ElementAtIndexTwo);
+	//UE_LOG(LogTemp, Warning, TEXT("Element: %d"), ElementAtIndexTwo);
 }
 
 
